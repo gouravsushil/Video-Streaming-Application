@@ -10,12 +10,41 @@ const VideoPlayer = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const episodesPerPage = 5;
 
-    const credentials = btoa('user:user');
+    // const credentials = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NSIsImlhdCI6MTczNDg4NjU1NywiZXhwIjoxNzM0ODg2NjY1fQ.JIdm2w2zFJkTGaOOaCCNeClTNrAL2-uLYEkA7ggbMRo';
     useEffect(() => {
-        // API call to get the list of top 10 videos
+
+        // axios.post('http://localhost:8080/api/v1/user/login', {
+        //     "email": "test5@gmail.com",
+        //     "password": "test5",
+        //     "username": "test5"
+        // }).then(res => {
+        //     const credentials = res.data;
+        //     console.log(credentials)
+        //     // API call to get the list of top 10 videos
+        //     axios.get('http://localhost:8080/api/v1/videos', {
+        //         headers: {
+        //             Authorization: `Bearer ${credentials}`
+        //         }
+        //     })
+        //         .then(response => {
+        //             const data = response.data;
+        //             console.log(data);
+        //             setVideos(data);
+        //             setVideoId(data[0].videoId);
+        //             setVideoTitle(data[0].title);
+        //         })
+        //         .catch(error => {
+        //             console.log("Error fetching the videos", error);
+        //         });
+        // })
+
+
+        const token = localStorage.getItem('token');
+        console.log(token);
+        // // API call to get the list of top 10 videos
         axios.get('http://localhost:8080/api/v1/videos', {
             headers: {
-                Authorization: `Basic ${credentials}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then(response => {

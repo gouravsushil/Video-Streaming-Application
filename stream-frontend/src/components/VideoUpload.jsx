@@ -11,6 +11,8 @@ import {
 } from "flowbite-react";
 import axios from "axios";
 import toast from "react-hot-toast";
+
+
 function VideoUpload() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [meta, setMeta] = useState({
@@ -67,12 +69,17 @@ function VideoUpload() {
             formData.append("description", videoMetaData.description);
             formData.append("file", selectedFile);
 
+            // const credentials = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NSIsImlhdCI6MTczNDg4NjU1NywiZXhwIjoxNzM0ODg2NjY1fQ.JIdm2w2zFJkTGaOOaCCNeClTNrAL2-uLYEkA7ggbMRo";
+            // const credentials = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NSIsImlhdCI6MTczNDg4ODg1NiwiZXhwIjoxNzM0ODg4OTY0fQ.ShQRse1FRm1dq5SM6Gr55W7qaEXjFqvWXbzEHGLmWj8";
+            const token = localStorage.getItem("token");
+            console.log();
             let response = await axios.post(
                 `http://localhost:8080/api/v1/videos`,
                 formData,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
+                        "Authorization": `Bearer ${token}`
                     },
                     onUploadProgress: (progressEvent) => {
                         const progress = Math.round(
@@ -103,103 +110,105 @@ function VideoUpload() {
     }
 
     return (
-        <div className="text-white py-10 max-w-3xl mx-auto">
-            <Card className="flex flex-col items-center justify-center">
-                <h1 className="flex justify-center">Upload Videos</h1>
+        <div className="min-h-screen flex items-center justify-center bg-gray-900 my-5">
+            <Card className="w-full max-w-3xl bg-gray-800 shadow-lg rounded-lg p-6">
+                <h1 className="text-2xl font-bold text-white text-center mb-6">Upload Videos</h1>
 
-                <div>
-                    <form
-                        noValidate
-                        className=" flex flex-col space-y-6"
-                        onSubmit={handleForm}
-                    >
-                        <div>
-                            <div className="mb-2 block">
-                                <Label htmlFor="file-upload" value="Video Title" />
-                            </div>
-                            <TextInput
-                                value={meta.title}
-                                onChange={formFieldChange}
-                                name="title"
-                                placeholder="Enter title"
+                <form
+                    noValidate
+                    className="space-y-6"
+                    onSubmit={handleForm}
+                >
+                    {/* Video Title Input */}
+                    <div>
+                        <Label htmlFor="file-upload" className="block text-white mb-2" value="Video Title" />
+                        <TextInput
+                            value={meta.title}
+                            onChange={formFieldChange}
+                            name="title"
+                            placeholder="Enter title"
+                            className="w-full p-3 bg-gray-700 rounded-md text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        />
+                    </div>
+
+                    {/* Video Description Input */}
+                    <div>
+                        <Label htmlFor="comment" className="block text-white mb-2" value="Video Description" />
+                        <Textarea
+                            value={meta.description}
+                            onChange={formFieldChange}
+                            name="description"
+                            id="comment"
+                            placeholder="Write video description..."
+                            required
+                            rows={4}
+                            className="w-full p-3 bg-gray-700 rounded-md text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        />
+                    </div>
+
+                    {/* Video Upload Input */}
+                    <div className="flex items-center space-x-5 justify-center">
+                        <div className="shrink-0">
+                            <img
+                                className="h-16 w-16 object-cover rounded-full border border-gray-500"
+                                src={videoLogo}
+                                alt="Current profile photo"
                             />
                         </div>
-
-                        <div className="max-w-md">
-                            <div className="mb-2 block">
-                                <Label htmlFor="comment" value="Video Description" />
-                            </div>
-                            <Textarea
-                                value={meta.description}
-                                onChange={formFieldChange}
-                                name="description"
-                                id="comment"
-                                placeholder="Write video description..."
-                                required
-                                rows={4}
+                        <label className="block w-full">
+                            <span className="sr-only">Choose video file</span>
+                            <input
+                                name="file"
+                                onChange={handleFileChange}
+                                type="file"
+                                className="block w-full text-sm text-gray-400
+                  file:mr-4 file:py-2 file:px-4
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-semibold
+                  file:bg-blue-600 file:text-white
+                  hover:file:bg-blue-700"
                             />
-                        </div>
+                        </label>
+                    </div>
 
-                        <div className="flex items-center space-x-5 justify-center">
-                            <div className="shrink-0">
-                                <img
-                                    className="h-16 w-16 object-cover "
-                                    src={videoLogo}
-                                    alt="Current profile photo"
-                                />
-                            </div>
-                            <label className="block">
-                                <span className="sr-only">Choose video file</span>
-                                <input
-                                    name="file"
-                                    onChange={handleFileChange}
-                                    type="file"
-                                    className="block w-full text-sm text-slate-500
-                                    file:mr-4 file:py-2 file:px-4
-                                    file:rounded-full file:border-0s
-                                    file:text-sm file:font-semibold
-                                    file:bg-violet-50 file:text-violet-700
-                                    hover:file:bg-violet-100"
-                                />
-                            </label>
-                        </div>
+                    {/* Upload Progress */}
+                    {uploading && (
+                        <Progress
+                            color="green"
+                            progress={progress}
+                            textLabel="Uploading"
+                            size="lg"
+                            labelProgress
+                            labelText
+                            className="mt-4"
+                        />
+                    )}
 
-                        <div className="">
-                            {uploading && (
-                                <Progress
-                                    color="green"
-                                    progress={progress}
-                                    textLabel="Uploading"
-                                    size={"lg"}
-                                    labelProgress
-                                    labelText
-                                />
-                            )}
-                        </div>
+                    {/* Success Alert */}
+                    {message && (
+                        <Alert
+                            color="success"
+                            rounded
+                            withBorderAccent
+                            onDismiss={() => setMessage("")}
+                            className="mt-4"
+                        >
+                            <span className="font-medium">Success alert! </span>
+                            {message}
+                        </Alert>
+                    )}
 
-                        <div className="">
-                            {message && (
-                                <Alert
-                                    color={"success"}
-                                    rounded
-                                    withBorderAccent
-                                    onDismiss={() => {
-                                        setMessage("");
-                                    }}
-                                >
-                                    <span className="font-medium">Success alert! </span>
-                                    {message}
-                                </Alert>
-                            )}
-                        </div>
-
-                        <div className="flex justify-center">
-                            <Button disabled={uploading} type="submit">
-                                Submit
-                            </Button>
-                        </div>
-                    </form>
-                </div>
+                    {/* Submit Button */}
+                    <div className="flex justify-center mt-6">
+                        <Button
+                            disabled={uploading}
+                            type="submit"
+                            className="w-full bg-blue-600 py-3 rounded-md text-white font-semibold hover:bg-blue-700 transition-all"
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                </form>
             </Card>
         </div>
     );

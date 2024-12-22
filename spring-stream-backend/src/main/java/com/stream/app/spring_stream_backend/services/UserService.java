@@ -8,4 +8,6 @@ public interface UserService {
 
     User addUser(UserDto userDTO);
     // LoginMesage loginUser(LoginDTO loginDTO);
+
+    String verify(UserDto userDto);
 }
