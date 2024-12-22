@@ -38,7 +38,6 @@ import com.stream.app.spring_stream_backend.services.VideoService;
 
 @RestController
 @RequestMapping("/api/v1/videos")
-@CrossOrigin("*")
 public class VideoController {
 
 	@Autowired

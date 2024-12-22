@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,9 +10,14 @@ const VideoPlayer = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const episodesPerPage = 5;
 
+    const credentials = btoa('user:user');
     useEffect(() => {
         // API call to get the list of top 10 videos
-        axios.get('http://localhost:8080/api/v1/videos')
+        axios.get('http://localhost:8080/api/v1/videos', {
+            headers: {
+                Authorization: `Basic ${credentials}`
+            }
+        })
             .then(response => {
                 const data = response.data;
                 console.log(data);

@@ -13,7 +13,6 @@ import com.stream.app.spring_stream_backend.entities.User;
 
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/v1/user")
 public class UserController {
 

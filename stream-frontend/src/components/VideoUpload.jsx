@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import videoLogo from "../assets/video-posting.png";
 import {
     Button,
     Card,
     Label,
-    FileInput,
     TextInput,
     Textarea,
     Progress,

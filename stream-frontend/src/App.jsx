@@ -1,7 +1,7 @@
 import './App.css'
 import VideoUpload from './components/VideoUpload'
 import { Toaster } from "react-hot-toast";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import VideoPlayer from './components/VideoPlayer';
 
 function App() {
