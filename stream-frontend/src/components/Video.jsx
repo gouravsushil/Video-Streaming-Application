@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import VideoPlayer from './VideoPlayer';
 import VideoUpload from './VideoUpload';
+import { FaUserCircle } from 'react-icons/fa';
+
 // import Profile from './Profile';
 
 const Video = (token) => {
@@ -24,8 +26,11 @@ const Video = (token) => {
             <div className="flex justify-around p-1 my-10">
 
                 <button
-                    className='absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-md shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200'
-                    onClick={handleProfile}></button>
+                    className='absolute top-4 right-4 flex items-center space-x-2 bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 focus:ring-2 focus:ring-cyan-500 focus:outline-none'
+                    onClick={handleProfile}>
+                    <FaUserCircle className="text-2xl" />
+                    <span className="text-lg font-semibold">Profile</span>
+                </button>
                 <div className='flex bg-gray-800 rounded-full p-1'>
                     <button
                         className={`px-6 py-2 rounded-full transition ${showPlayer ? "bg-gray-950 text-white" : "bg-gray-700 text-gray-300"

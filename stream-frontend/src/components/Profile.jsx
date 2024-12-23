@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import Logout from "./Logout";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
 
     const [userInfo, setUserInfo] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         try {
@@ -26,6 +29,15 @@ const Profile = () => {
     //     }
     // }, [userInfo]);
 
+    const handleBlack = () => {
+        navigate('/videos');
+        const user = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+        console.log(token)
+        console.log(user)
+
+
+    };
     return (
         <div className="text-white py-10 max-w-3xl mx-auto">
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg space-y-4">
@@ -50,8 +62,15 @@ const Profile = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="mt-8 flex justify-center">
-                            <Logout />
+                        <div className="flex flex-col md:flex-row items-center justify-center space-x-10 md:space-x-8 mt-8">
+                            <div className="mt-8 flex justify-center">
+                                <Logout />
+                            </div>
+                            <div className="mt-8 flex justify-center">
+                                <button onClick={handleBlack} className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+                                    Back
+                                </button>
+                            </div>
                         </div>
                     </>
                 ) : (
