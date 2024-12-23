@@ -203,7 +203,7 @@ function VideoUpload() {
                         <Button
                             disabled={uploading}
                             type="submit"
-                            className="w-full bg-blue-600 py-3 rounded-md text-white font-semibold hover:bg-blue-700 transition-all"
+                            className="w-full bg-cyan-700 py-3 rounded-md text-white font-semibold hover:bg-cyan-800 transition-all"
                         >
                             Submit
                         </Button>

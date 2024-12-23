@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import VideoPlayer from './VideoPlayer';
 import VideoUpload from './VideoUpload';
+import Logout from './Logout';
 
 const Video = (token) => {
     const [showPlayer, setShowPlayer] = useState(true);  // true: VideoPlayer  false: VideoUploader
@@ -8,7 +9,8 @@ const Video = (token) => {
     return (
         <div className="flex flex-col items-center justify-center space-y-5 py-9">
             <h1 className="text-4xl font-bold text-gray-500">Video Streaming application</h1>
-            {/* Toggle Switch */}   
+            <Logout />
+            {/* Toggle Switch */}
             <div className="flex justify-around p-1 my-10">
 
                 <div className='flex bg-gray-800 rounded-full p-1'>
