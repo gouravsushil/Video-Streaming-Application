@@ -28,7 +28,9 @@ const Register = () => {
     const handleRegistration = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:8080/api/v1/user/save", user);
+            const response = await axios.post("http://localhost:8080/api/v1/user/save", user);
+            console.log(response.data); // the response from the server
+            localStorage.setItem('user', JSON.stringify(response.data));
             // const response = await axios.post("http://localhost:8080/api/v1/user/save", user);
             // const token = await axios.post("http://localhost:8080/api/v1/user/login", user);
             // console.log(token.data); // the token used to authenticate the user

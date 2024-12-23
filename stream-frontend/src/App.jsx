@@ -7,6 +7,7 @@ import Login from './components/login';
 // import VideoPlayer from './components/VideoPlayer';
 // import VideoUpload from './components/VideoUpload';
 import Video from './components/Video';
+import Profile from './components/Profile';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
         {/* <Route path="/register" element={<Register />} /> */}
         <Route path="/login" element={<Login />} />
         {/* <Route path="/videoPlayer" element={<VideoPlayer />} />

@@ -26,6 +26,12 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/v1/user/login', user);
+            console.log(response);
+            console.log(response.config.data); // gives the user information
+            localStorage.setItem('user', (response.config.data));
+            const userData = (localStorage.getItem('user'));
+            console.log(userData);
+
             const token = await response.data; // Assuming the backend returns a token
 
             localStorage.setItem('token', token);
@@ -68,7 +74,7 @@ const Login = () => {
                         </div>
 
                         {/* Email Input */}
-                        {/* <div>
+                        <div>
                             <label htmlFor="email" className="block text-white mb-2">
                                 Email
                             </label>
@@ -80,7 +86,7 @@ const Login = () => {
                                 onChange={handleChange}
                                 required
                             />
-                        </div> */}
+                        </div>
 
                         {/* Password Input */}
                         <div>
