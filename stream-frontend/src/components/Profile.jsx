@@ -30,7 +30,8 @@ const Profile = () => {
     // }, [userInfo]);
 
     const handleBlack = () => {
-        navigate('/videos');
+        // navigate('/videos');
+        navigate(-1);
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
         console.log(token)

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import VideoPlayer from './VideoPlayer';
+// import VideoPlayer from './VideoPlayer';
 import VideoUpload from './VideoUpload';
+import VideosPage from './VideosPage';
 import { FaUserCircle } from 'react-icons/fa';
 
 // import Profile from './Profile';
@@ -26,7 +27,7 @@ const Video = (token) => {
             <div className="flex justify-around p-1 my-10">
 
                 <button
-                    className='absolute top-4 right-4 flex items-center space-x-2 bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 focus:ring-2 focus:ring-cyan-500 focus:outline-none'
+                    className='absolute top-6 right-4 flex items-center space-x-2 bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 focus:ring-2 focus:ring-cyan-500 focus:outline-none'
                     onClick={handleProfile}>
                     <FaUserCircle className="text-2xl" />
                     <span className="text-lg font-semibold">Profile</span>
@@ -37,7 +38,7 @@ const Video = (token) => {
                             }`}
                         onClick={() => setShowPlayer(true)}
                     >
-                        Video Player
+                        Videos
                     </button>
                     <button
                         className={`px-6 py-2 rounded-full transition ${!showPlayer ? "bg-gray-950 text-white" : "bg-gray-700 text-gray-300"
@@ -50,7 +51,7 @@ const Video = (token) => {
             </div>
             {/* Conditional Rendering */}
             <div className="w-full max-w-8xl">
-                {showPlayer ? <VideoPlayer token={token} /> : <VideoUpload token={token} />}
+                {showPlayer ? <VideosPage token={token} /> : <VideoUpload token={token} />}
             </div>
         </div>
     )
