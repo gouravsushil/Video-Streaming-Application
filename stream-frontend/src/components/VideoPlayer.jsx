@@ -62,7 +62,7 @@ const VideoPlayer = () => {
 
     return (
 
-        <div className='flex flex-col items-center text-white min-h-screen py-5 px-5 max-w-500'>
+        <div className='flex flex-col items-center text-white min-h-screen py-5 px-5 max-w-500 bg-gray-900'>
             <h1 className="text-4xl font-bold text-gray-500">Video Streaming application</h1>
 
             <button
@@ -89,7 +89,7 @@ const VideoPlayer = () => {
 
                 {/* List of Episodes Section */}
                 <div className='w-full max-w-screen-xl mt-10'>
-                    <h3 className='text-lg font-semibold mb-5 text-center'>More Episodes</h3>
+                    <h3 className='text-lg font-semibold mb-5 text-center'>More Videos</h3>
                     <div className='grid grid-cols-5 gap-5'>
                         {videos.map((video) => (
                             <div

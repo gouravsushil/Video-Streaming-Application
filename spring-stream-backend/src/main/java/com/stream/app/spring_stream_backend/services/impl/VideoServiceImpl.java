@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 
@@ -32,7 +31,6 @@ public class VideoServiceImpl implements VideoService {
 	
 	private VideoRepository videoRepository;
 	
-	@Autowired
 	public VideoServiceImpl(VideoRepository videoRepository) {
 		this.videoRepository = videoRepository;
 	}

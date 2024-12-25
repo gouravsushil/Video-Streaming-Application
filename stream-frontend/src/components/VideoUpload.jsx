@@ -22,6 +22,8 @@ function VideoUpload() {
     const [progress, setProgress] = useState(0);
     const [uploading, setUploading] = useState(false);
     const [message, setMessage] = useState("");
+    const [isError, setIsError] = useState(false);
+
 
     function handleFileChange(event) {
         console.log(event.target.files[0]);
@@ -100,10 +102,12 @@ function VideoUpload() {
             // console.log(response.data);
             setUploading(false);
             toast.success("File uploaded successfully !!");
+            setIsError(false);
             resetForm();
         } catch (error) {
             console.log(error);
             setMessage("Error in uplaoding File");
+            setIsError(true);
             setUploading(false);
             toast.error("File not uploaded !!");
         }
@@ -187,13 +191,15 @@ function VideoUpload() {
                     {/* Success Alert */}
                     {message && (
                         <Alert
-                            color="success"
+                            color={isError ? "danger" : "success"} // Conditionally set color based on success or error
                             rounded
                             withBorderAccent
                             onDismiss={() => setMessage("")}
                             className="mt-4"
                         >
-                            <span className="font-medium">Success alert! </span>
+                            <span className="font-medium">
+                                {isError ? "Error alert!" : "Success alert!"}
+                            </span>
                             {message}
                         </Alert>
                     )}

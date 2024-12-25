@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import VideoPlayer from './VideoPlayer';
 import VideoUpload from './VideoUpload';
@@ -11,16 +11,16 @@ const Video = (token) => {
     const [showPlayer, setShowPlayer] = useState(true);  // true: VideoPlayer  false: VideoUploader
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const userData = localStorage.getItem('user');
-        console.log(userData);
-    }, []);
+    // useEffect(() => {
+    //     const userData = localStorage.getItem('user');
+    //     console.log(userData);
+    // }, []);
 
     const handleProfile = () => {
         navigate('/profile');
     }
     return (
-        <div className="flex flex-col items-center justify-center space-y-5 py-9">
+        <div className="flex flex-col items-center justify-center space-y-5 py-9 bg-gray-900">
             <h1 className="text-4xl font-bold text-gray-500">Video Streaming application</h1>
 
             {/* Toggle Switch */}
